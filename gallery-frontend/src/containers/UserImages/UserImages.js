@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Image from "../../components/Image/Image";
-import {deleteImage, getCurrentImage, getImages} from "../../store/actions/actions";
+import {deleteImage, getCurrentImage, getImagesByAuthorId} from "../../store/actions/actions";
 import Preloader from "../../components/UI/Preloader/Preloader";
 import Modal from "../../components/UI/Modal/Modal";
 
@@ -10,7 +10,7 @@ class Images extends Component {
     show: false,
   };
   componentDidMount() {
-    this.props.getImages();
+    this.props.getImagesByAuthorId(this.props.match.params.authorId);
   }
   showPic = (imageId) =>  {
     this.setState({show: true});
@@ -18,7 +18,7 @@ class Images extends Component {
   };
   deletePic = async(imageId) => {
     await this.props.deleteImage(imageId);
-     this.props.getImages();
+    this.props.getImagesByAuthorId(this.props.match.params.authorId);
   };
   purchaseCancelHandler = () => {
     this.setState({show: false});
@@ -29,27 +29,27 @@ class Images extends Component {
   render() {
     return (
       this.props.loading ? <Preloader/> :
-      <div className='d-flex justify-content-between flex-wrap'>
-        {this.props.images.map(image => {
-          return <Image
-            key={image._id}
-            showPic={() => {this.showPic(image._id)}}
-            title={image.title}
-            image={image.photo}
-            changeLocation={() => {this.changeLocation(image.author._id)}}
-            author={image.author}
-            user={this.props.user}
-            deleteImage={() => {this.deletePic(image._id)}}
-          />
-        })}
-        {this.props.image.photo ?         <Modal
-          show={this.state.show}
-          image={this.props.image.photo}
-          closed={this.purchaseCancelHandler}
-        /> : null
-        }
+        <div className='d-flex justify-content-between flex-wrap'>
+          {this.props.images.map(image => {
+            return <Image
+              key={image._id}
+              showPic={() => {this.showPic(image._id)}}
+              title={image.title}
+              image={image.photo}
+              changeLocation={() => {this.changeLocation(image.author._id)}}
+              author={image.author}
+              user={this.props.user}
+              deleteImage={() => {this.deletePic(image._id)}}
+            />
+          })}
+          {this.props.image.photo ?         <Modal
+            show={this.state.show}
+            image={this.props.image.photo}
+            closed={this.purchaseCancelHandler}
+          /> : null
+          }
 
-      </div>
+        </div>
     );
   }
 }
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getImages: () => dispatch(getImages()),
+    getImagesByAuthorId: (authorId) => dispatch(getImagesByAuthorId(authorId)),
     showPic: (imageId) => dispatch(getCurrentImage(imageId)),
     deleteImage: (imageId) => dispatch(deleteImage(imageId))
   }

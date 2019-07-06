@@ -1,4 +1,9 @@
-import {FETCH_ERROR, FETCH_IMAGE_SUCCESS, FETCH_IMAGES_SUCCESS, FETCH_REQUEST} from "../actions/actionTypes";
+import {
+  FETCH_ERROR,
+  FETCH_IMAGE_SUCCESS,
+  FETCH_IMAGES_SUCCESS,
+  FETCH_REQUEST
+} from "../actions/actionTypes";
 
 const initialState = {
   images: [],

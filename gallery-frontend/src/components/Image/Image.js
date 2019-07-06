@@ -9,7 +9,7 @@ const Image = (props) => {
         <CardImg onClick={props.showPic} top width="100%" src={config.imageURL + props.image} alt={props.title} />
         <CardBody>
           <CardTitle>{props.title}</CardTitle>
-          <CardText>Published by: {props.author.username}</CardText>
+          <CardText>Published by: <span style={{cursor: 'pointer', borderBottom: '1px solid blue'}} onClick={props.changeLocation}>{props.author.username}</span></CardText>
         </CardBody>
         {props.user && props.author._id === props.user._id ? <Button onClick={props.deleteImage}>Delete image</Button> : null}
       </Card>
