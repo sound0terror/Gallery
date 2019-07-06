@@ -5,16 +5,14 @@ import config from '../../config';
 
 const Image = (props) => {
   return (
-    <div>
-      <Card style={{width: '18rem', paddingBottom: '20px'}}>
+      <Card style={{width: '18rem', marginBottom: '20px'}}>
         <CardImg onClick={props.showPic} top width="100%" src={config.imageURL + props.image} alt={props.title} />
         <CardBody>
           <CardTitle>{props.title}</CardTitle>
           <CardText>Published by: {props.author.username}</CardText>
         </CardBody>
-        {props.author._id === props.user._id ? <Button>Button</Button> : null}
+        {props.user && props.author._id === props.user._id ? <Button onClick={props.deleteImage}>Delete image</Button> : null}
       </Card>
-    </div>
   )
 };
 Image.propTypes = {

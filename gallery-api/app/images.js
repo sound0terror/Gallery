@@ -3,7 +3,6 @@ const router = express.Router();
 const nanoid = require('nanoid');
 const multer = require('multer');
 const Image = require('../models/Image');
-const User = require('../models/User');
 const path = require('path');
 const auth = require('../middlewares/auth');
 

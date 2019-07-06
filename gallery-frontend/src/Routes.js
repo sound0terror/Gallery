@@ -7,7 +7,7 @@ import Images from "./containers/Images/Images";
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/" component={Images}/>
+      <Route path="/" exact component={Images}/>
       <Route path="/register" component={Register}/>
       <Route path="/login" component={Login}/>
     </Switch>

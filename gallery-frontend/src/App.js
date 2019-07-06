@@ -8,6 +8,11 @@ import {logoutUser} from "./store/actions/usersActions";
 import Routes from "./Routes";
 
 class App extends Component {
+  state = {
+    show: false
+  };
+
+
   render() {
     return (
           <Fragment>

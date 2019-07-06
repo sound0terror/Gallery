@@ -1,8 +1,11 @@
 import axios from '../../axios-api';
-import {FETCH_ERROR, FETCH_IMAGES_SUCCESS, FETCH_REQUEST} from "./actionTypes";
+import {FETCH_ERROR, FETCH_IMAGE_SUCCESS, FETCH_IMAGES_SUCCESS, FETCH_REQUEST} from "./actionTypes";
 
 const fetchImagesSuccess = (images) => {
   return {type: FETCH_IMAGES_SUCCESS, images};
+};
+const fetchImageSuccess = (image) => {
+  return {type: FETCH_IMAGE_SUCCESS, image};
 };
 
 const fetchError = (error) => {
@@ -39,9 +42,23 @@ export const getCurrentImage = (imageId) => {
   return dispatch => {
     dispatch(fetchRequest());
     axios.get('/images/' + imageId).then(response => {
-      dispatch(fetchImagesSuccess(response.data));
+      dispatch(fetchImageSuccess(response.data));
     }, error => {
       dispatch(fetchError(error));
     })
+  }
+};
+
+export const deleteImage = (imageId) => {
+  return (dispatch, getState) => {
+    try{
+      const token = getState().users.user.token;
+      const headers = {
+        Authorization: token
+      };
+      axios.delete('/images/' + imageId, {headers})
+    } catch (e) {
+      dispatch(fetchError(e));
+    }
   }
 };

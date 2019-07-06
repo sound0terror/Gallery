@@ -1,7 +1,8 @@
 import React, {Fragment} from 'react';
 import './Modal.css';
 import Backdrop from "../Backdrop/Backdrop";
-
+import {Button} from "reactstrap";
+import config from '../../../config';
 const Modal = props => {
   return (
     <Fragment>
@@ -16,7 +17,8 @@ const Modal = props => {
           opacity: props.show ? 1 : 0
         }}
       >
-        {props.children}
+        <Button onClick={props.closed} close />
+        <img style={{width: "100%"}} src={config.imageURL + props.image} alt={props.title}/>
       </div>
     </Fragment>
   );
