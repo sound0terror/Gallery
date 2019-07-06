@@ -23,13 +23,22 @@ const upload = multer({storage});
 const createRouter = () => {
 
   router.get('/', async (req, res) => {
-
-    Image.find().populate('author')
-      .then(result => {
-        res.send(result);
-      }).catch(() => {
-      res.status(500).send('Internal server error');
-    });
+    try {
+      if (req.query.author) {
+        const authorId = req.query.author;
+        if(!authorId) {
+          res.sendStatus(400);
+        } else {
+          let images = await Image.find({author: authorId}).populate('author');
+          res.send(images);
+        }
+      } else {
+        const images = await Image.find().populate('author');
+        res.send(images);
+      }
+    } catch {
+      res.sendStatus(500);
+    }
   });
 
   router.get('/:id', (req, res) => {

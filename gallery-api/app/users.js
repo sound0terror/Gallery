@@ -30,6 +30,8 @@ const createRouter = () => {
 
     user.save().then((result) => {
       res.send(result);
+    }).catch(err => {
+      res.status(400).send({message: err});
     });
 
   });
