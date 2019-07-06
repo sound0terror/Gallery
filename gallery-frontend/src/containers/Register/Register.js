@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
+import {Button, Col, Form, FormGroup} from "reactstrap";
 import {connect} from "react-redux";
 import {registerUser} from "../../store/actions/usersActions";
-import FacebookLogin from "../../components/FacebookLogin/FacebookLogin";
 import FormElement from "../../components/UI/FormElement/FormElement";
 
 class Register extends Component {
@@ -56,7 +55,6 @@ class Register extends Component {
                         </Col>
                     </FormGroup>
                 </Form>
-                <FacebookLogin />
             </Fragment>
         )
     }

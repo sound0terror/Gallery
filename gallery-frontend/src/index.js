@@ -12,18 +12,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-notifications/lib/notifications.css';
 
 import App from './App';
-import productsReducer from './store/reducers/products';
+import imagesReducer from './store/reducers/images';
 import usersReducer from "./store/reducers/users";
-import categoriesReducer from "./store/reducers/categories";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-  products: productsReducer,
+  images: imagesReducer,
   users: usersReducer,
-  categories: categoriesReducer,
   router: connectRouter(history)
 });
 

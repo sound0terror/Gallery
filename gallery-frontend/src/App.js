@@ -1,12 +1,42 @@
 import React, {Component, Fragment} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Toolbar from "./components/UI/Toolbar/Toolbar";
+import {Container} from "reactstrap";
+import {withRouter} from "react-router";
+import {connect} from "react-redux";
+import {NotificationContainer} from 'react-notifications';
+import {logoutUser} from "./store/actions/usersActions";
+import Routes from "./Routes";
 
 class App extends Component {
   render() {
     return (
-      null
+      <Fragment>
+        <NotificationContainer/>
+        <header>
+          <Toolbar
+            user={this.props.users}
+            logout={this.props.logoutUser}
+          />
+        </header>
+        <main>
+          <Container>
+            <Routes/>
+          </Container>
+        </main>
+      </Fragment>
     );
   }
 }
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    users: state.users.user
+  }
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    logoutUser: () => dispatch(logoutUser())
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

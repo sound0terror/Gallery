@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import {Alert, Button, Col, Form, FormGroup} from "reactstrap";
 import {connect} from "react-redux";
 import {loginUser} from "../../store/actions/usersActions";
-import FacebookLogin from "../../components/FacebookLogin/FacebookLogin";
 import FormElement from "../../components/UI/FormElement/FormElement";
 
 class Login extends Component {
@@ -17,7 +16,7 @@ class Login extends Component {
     };
     onSubmitHandler = e => {
         e.preventDefault();
-        this.props.loginUser(this.state);
+        this.props.loginUser({username: this.state.username, password: this.state.password});
     };
 
     render() {
@@ -53,7 +52,6 @@ class Login extends Component {
                         </Col>
                     </FormGroup>
                 </Form>
-                <FacebookLogin />
             </Fragment>
 
         )

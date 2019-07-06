@@ -1,14 +1,12 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {NavLink as RouterNavLink} from 'react-router-dom';
 import {
-    Container, DropdownItem, DropdownMenu,
-    DropdownToggle,
+    Container,
     Nav,
     Navbar,
     NavbarBrand,
     NavItem,
     NavLink,
-    UncontrolledDropdown
 } from "reactstrap";
 import UserMenu from "./Menus/UserMenu";
 import AnonymousMenu from "./Menus/AnonymousMenu";
@@ -22,7 +20,7 @@ const Toolbar = ({user, logout}) => {
                     to='/'
                     exact
                 >
-                    Shop
+                    Gallery
                 </NavbarBrand>
                 <Nav className="ml-auto">
                     <NavItem>
@@ -31,20 +29,18 @@ const Toolbar = ({user, logout}) => {
                             to='/'
                             exact
                         >
-                            Products
+                            Images
                         </NavLink>
                     </NavItem>
                     {
-                        user
-                            ?
-                            <UserMenu
-                                user={user}
-                                logout={logout}
-                            />
-                            :
-                            <AnonymousMenu />
+                        user ?
+                          <UserMenu
+                            user={user}
+                            logout={logout}
+                          />
+                          :
+                          <AnonymousMenu />
                     }
-
                 </Nav>
             </Container>
         </Navbar>
