@@ -24,7 +24,7 @@ const createRouter = () => {
 
   router.get('/', async (req, res) => {
 
-    Image.find().populate('user')
+    Image.find().populate('author')
       .then(result => {
         res.send(result);
       }).catch(() => {
@@ -60,10 +60,11 @@ const createRouter = () => {
   router.delete('/:id', auth, async (req, res) => {
     try {
       const user = req.user;
-      const currentTask = await Image.findById(req.params.id);
-      const currentTaskId = currentTask.user.toString();
+      const currentImage = await Image.findById(req.params.id);
+      const currentAuthorId = currentImage.author.toString();
       const userId = user._id.toString();
-      if(currentTaskId !== userId) {
+      console.log(userId, currentAuthorId);
+      if(currentAuthorId !== userId) {
         return res.status(403).send({message: 'no authority for this action'});
       }
       await Image.deleteOne({_id: req.params.id});

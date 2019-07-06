@@ -24,16 +24,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  token: String,
-  role: {
-    type: String,
-    required: true,
-    default: "users.js",
-    enum: ["users.js", "admin"]
-  },
-  displayName: {
-    type: String
-  }
+  token: String
 });
 
 UserSchema.pre('save', async function(next) {

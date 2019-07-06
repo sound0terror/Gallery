@@ -15,7 +15,7 @@ db.once('open', async () => {
     } catch (e) {
         console.log("Collections were not present.");
     }
-    const [admin, user] = await User.create({
+    const [user, admin] = await User.create({
         username: "User",
         password: "123",
         role: "users.js"
