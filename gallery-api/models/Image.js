@@ -20,4 +20,4 @@ const ImageSchema = new Schema({
 
 const Image = mongoose.model('Image', ImageSchema);
 
-module.exports = Product;
+module.exports = Image;
