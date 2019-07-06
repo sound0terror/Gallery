@@ -6,32 +6,31 @@ import {connect} from "react-redux";
 import {NotificationContainer} from 'react-notifications';
 import {logoutUser} from "./store/actions/usersActions";
 import Routes from "./Routes";
-import Preloader from "./components/UI/Preloader/Preloader";
 
 class App extends Component {
   render() {
     return (
-      <Fragment>
-        <NotificationContainer/>
-        <header>
-          <Toolbar
-            user={this.props.users}
-            logout={this.props.logoutUser}
-          />
-        </header>
-        <main>
-          <Container>
-            <Routes/>
-          </Container>
-        </main>
-      </Fragment>
+          <Fragment>
+            <NotificationContainer/>
+            <header>
+              <Toolbar
+                user={this.props.users}
+                logout={this.props.logoutUser}
+              />
+            </header>
+            <main>
+              <Container>
+                <Routes/>
+              </Container>
+            </main>
+          </Fragment>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    users: state.users.user
+    users: state.users.user,
   }
 };
 const mapDispatchToProps = dispatch => {
