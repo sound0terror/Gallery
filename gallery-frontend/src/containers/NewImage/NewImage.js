@@ -1,12 +1,26 @@
 import React, {Component} from 'react';
-import FormElement from "../../components/UI/FormElement/FormElement";
+import ImageForm from "../../components/ImageForm/ImageForm";
+import {connect} from "react-redux";
+import {createImage} from "../../store/actions/actions";
 
 class NewImage extends Component{
   render() {
     return (
-      <FormElement></FormElement>
+      <ImageForm
+        submitForm={this.props.createImage}
+        author={this.props.user._id}
+      />
     );
   }
 }
-
-export default NewImage;
+const mapStateToProps = (state) => {
+  return {
+    user: state.users.user,
+  }
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    createImage: (image) => dispatch(createImage(image))
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(NewImage);

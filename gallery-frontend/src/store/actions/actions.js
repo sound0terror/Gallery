@@ -1,6 +1,16 @@
 import axios from '../../axios-api';
-import { FETCH_ERROR, FETCH_IMAGE_SUCCESS, FETCH_IMAGES_SUCCESS, FETCH_REQUEST} from "./actionTypes";
+import {push} from "connected-react-router";
+import {
+  CREATE_IMAGE_SUCCESS,
+  FETCH_ERROR,
+  FETCH_IMAGE_SUCCESS,
+  FETCH_IMAGES_SUCCESS,
+  FETCH_REQUEST
+} from "./actionTypes";
 
+const createImageSuccess = () => {
+  return {type: CREATE_IMAGE_SUCCESS}
+};
 const fetchImagesSuccess = (images) => {
   return {type: FETCH_IMAGES_SUCCESS, images};
 };
@@ -58,6 +68,23 @@ export const deleteImage = (imageId) => {
       };
       return axios.delete('/images/' + imageId, {headers});
     } catch (e) {
+      dispatch(fetchError(e));
+    }
+  }
+};
+
+export const createImage = image => {
+  return (dispatch, getState) => {
+    try{
+      const token = getState().users.user.token;
+      const headers = {
+        Authorization: token
+      };
+      return axios.post('/images', image, {headers}).then(() => {
+        dispatch(createImageSuccess());
+        dispatch(push("/"));
+      });
+    }catch (e) {
       dispatch(fetchError(e));
     }
   }

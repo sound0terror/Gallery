@@ -19,7 +19,7 @@ class ProductForm extends Component {
   submitFormHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-
+    formData.author = this.props.author;
     for (let key in this.state) {
       formData.append(key, this.state[key]);
     }

@@ -25,7 +25,7 @@ class App extends Component {
             </header>
             <main>
               <Container>
-                <Routes/>
+                <Routes user={this.props.users}/>
               </Container>
             </main>
           </Fragment>

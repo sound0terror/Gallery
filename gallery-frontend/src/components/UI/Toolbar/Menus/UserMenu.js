@@ -16,6 +16,13 @@ const UserMenu = ({user, logout}) => {
         >
           My images
         </NavLink>
+        <NavLink
+          tag={RouterNavLink}
+          to='/images/new'
+          exact
+        >
+          Create image
+        </NavLink>
         <DropdownItem divider />
         <DropdownItem onClick={logout}>
           Logout
