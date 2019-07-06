@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {NotificationContainer} from 'react-notifications';
 import {logoutUser} from "./store/actions/usersActions";
 import Routes from "./Routes";
+import Preloader from "./components/UI/Preloader/Preloader";
 
 class App extends Component {
   render() {

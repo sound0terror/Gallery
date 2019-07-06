@@ -11,7 +11,7 @@ const UserMenu = ({user, logout}) => {
       <DropdownMenu right>
         <NavLink
           tag={RouterNavLink}
-          to={/images/ + user.username}
+          to={/images/ + 'author/' + user._id}
           exact
         >
           My images
